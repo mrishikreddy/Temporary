@@ -25,4 +25,35 @@ print("Total number of sub sequences:\n",inc_sub)
 print("Maximum length of increasing subsequence: ",max_len)
 
 
-# Note this can be solved easily by LIS
+
+
+# Optmized Code:
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        dp = [1]*len(nums)
+
+        for i in range(1,len(nums)):
+            for j in range(0,i):
+                if nums[j]<nums[i]:
+                    dp[i] = max(dp[i],1+dp[j])
+        return max(dp)
+
+
+
+
+
+# Climbing stairs Problem:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        a = 1
+        b = 1
+        tot = a+b
+        for _ in range(n):
+            a = b
+            b = tot
+            tot = a+b
+        return a
